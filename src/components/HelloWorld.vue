@@ -1,23 +1,43 @@
 <template>
   <div>
-  <el-link href="https://element.eleme.io" target="_blank">默认链接</el-link>
-  <el-link type="primary" disabled>主要链接</el-link>
-  <el-link type="success" :underline="false">成功链接</el-link>
-  <el-link type="warning">警告链接</el-link>
-  <el-link type="danger">危险链接</el-link>
-  <el-link type="info">信息链接</el-link>
-  <el-link icon="el-icon-edit">编辑</el-link>
-  <el-link icon="el-icon-view el-icon--right">查看</el-link>
-</div>
+    <el-checkbox-group v-model="checkList">
+      <el-checkbox label="复选框 A"></el-checkbox>
+      <el-checkbox label="复选框 B"></el-checkbox>
+      <el-checkbox label="复选框 C"></el-checkbox>
+      <el-checkbox label="禁用" disabled></el-checkbox>
+      <el-checkbox label="选中且禁用" disabled></el-checkbox>
+    </el-checkbox-group>
+    <hr>
+    <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
+    <div style="margin: 15px 0;"></div>
+    <el-checkbox-group v-model="checkedCities" @change="handleCheckedCitiesChange">
+      <el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
+    </el-checkbox-group>
+  </div>
 </template>
 
 <script>
-export default {
-  data: () => ({
-  }),
-  created () {
-  }
-}
+  const cityOptions = ['上海', '北京', '广州', '深圳'];
+  export default {
+    data: () => ({
+      checkList: ['选中且禁用','复选框 A'],
+      checkAll: false,
+      checkedCities: ['上海', '北京'],
+      cities: cityOptions,
+      isIndeterminate: true
+    }),
+    methods: {
+      handleCheckAllChange(val) {
+        this.checkedCities = val ? cityOptions : [];
+        this.isIndeterminate = false;
+      },
+      handleCheckedCitiesChange(value) {
+        let checkedCount = value.length;
+        this.checkAll = checkedCount === this.cities.length;
+        this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length;
+      }
+    }
+  };
 </script>
 
 <style lang="scss" scope>

@@ -34,6 +34,8 @@ export default {
 } */
 body,
 html {
+  width: 100%;
+  height: 100%;
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
 }
@@ -42,5 +44,13 @@ html {
   padding: 0px;
 }
 #app {
+  width: 1200px;
+  height: 800px;
+  margin: 100px auto
+}
+hr {
+  margin-top: 12px;
+  height: 3px;
+  background: red;
 }
 </style>
