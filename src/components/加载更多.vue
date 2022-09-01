@@ -39,7 +39,7 @@
 </template>
 <script>
 import vantTable from './vantTable'
-import listData from './1'
+import listData from './listData'
 export default {
   name: 'formLayout',
   components: { vantTable },
